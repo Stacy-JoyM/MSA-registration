@@ -1,0 +1,102 @@
+#navbar {
+
+    position: sticky;
+    top: 0;
+    padding: 10px var(--site-padding);
+    z-index: 20;
+    border-bottom: 2px black solid;
+    background-color: var(--col-theme);
+}
+
+#nav-content {
+
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+#defocus {
+
+    display: none;
+}
+
+#nav-list-bg {
+
+    display: none;
+}
+
+#nav-toggle-btn {
+
+    display: none;
+    position: relative;
+}
+
+.nav-list {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 32px;
+    align-items: center;
+    padding: 0;
+    max-height: 75lvh;
+}
+
+.nav-link {
+
+    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0;
+    border-radius: 0;
+
+    transition: color 0.24s ease-in-out, font-weight 0.24s ease-in-out, padding 0.24s ease-in-out, border-radius 0.24s ease-in-out;
+}
+
+.nav-link:hover,
+.nav-link:focus,
+.nav-link:active {
+
+    color: var(--col-sec1);
+    font-weight: 500;
+}
+
+.nav-list[nav-state=home] .home-link,
+.nav-list[nav-state=impact] .impact-link,
+.nav-list[nav-state=little_g] .little-giants-link,
+.nav-list[nav-state=msa_factory] .msa-factory-link,
+.nav-list[nav-state=propulse] .propulse-link,
+.nav-list[nav-state=gallery] .gallery-link,
+.nav-list[nav-state=contact] .contact-link,
+.nav-link[navigation-state=active] {
+
+    padding: 4px 6px;
+    border-radius: 4px;
+    background-color: var(--col-pri);
+    color: var(--col-theme);
+    font-weight: 700;
+    font-size: 14px;
+}
+
+#mobile-focus-bg {
+
+    display: none;
+}
+
+#msa-logo {
+
+    display: block;
+    width: max-content;
+    height: 60px;
+}
+
+#msa-logo > img {
+
+    height: 100%;
+}
