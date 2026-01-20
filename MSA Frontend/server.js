@@ -10,10 +10,24 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Register partials
-hbs.registerPartials(path.join(__dirname, 'views/partials'));
+const partialsPath = path.join(__dirname, 'views/partials');
+console.log('Registering partials from:', partialsPath);
+console.log('Available partials:', require('fs').readdirSync(partialsPath));
 
-// Serve static files from the public directory
+// Register navbar partial manually
+const navbarPartialPath = path.join(__dirname, 'views/partials/navbar.hbs');
+if (require('fs').existsSync(navbarPartialPath)) {
+    console.log('Found navbar partial at:', navbarPartialPath);
+    hbs.registerPartial('navbar', require('fs').readFileSync(navbarPartialPath, 'utf8'));
+} else {
+    console.log('Navbar partial not found at:', navbarPartialPath);
+}
+
+hbs.registerPartials(partialsPath);
+
+// Serve static files from public and views directory
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'views')));
 
 // Routes
 app.get('/', (req, res) => {
@@ -21,10 +35,15 @@ app.get('/', (req, res) => {
 });
 
 app.get('/events', (req, res) => {
-    res.render('event-home', {
-        title: 'Events - Momentum Sports',
-        footerPage: 'events'
-    });
+    try {
+        res.render('event-home/event-home', {
+            title: 'Events - Momentum Sports',
+            footerPage: 'events'
+        });
+    } catch (error) {
+        console.error('Render error:', error);
+        res.status(500).send('Render error: ' + error.message);
+    }
 });
 
 app.get('/register', (req, res) => {
@@ -45,6 +64,12 @@ app.get('/data-policy', (req, res) => {
     res.render('data-policy', {
         title: 'Data Policy - Momentum Sports'
     });
+});
+
+// Error handling middleware (must be after routes)
+app.use((err, req, res, next) => {
+    console.error('Error:', err);
+    res.status(500).send('Internal Server Error: ' + err.message);
 });
 
 // Start the server
