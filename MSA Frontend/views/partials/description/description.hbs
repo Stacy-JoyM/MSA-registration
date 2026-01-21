@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/partials/navbar/styles/navbar.css">
+    <link rel="stylesheet" href="/partials/description/styles/description.css">
+</head>
+<body>
+    {{> navbar}}
+    
+    <main class="main">
+        <!-- Full-width banner image -->
+        <div class="event-banner">
+            <img src="{{eventData.image}}" alt="{{eventData.title}}">
+        </div>
+
+        <!-- Content section -->
+        <div class="event-content-section">
+            <div class="container">
+                <h1 class="event-title">{{eventData.title}}</h1>
+                <p class="event-description-text">{{eventData.description}}</p>
+                <div class="event-actions">
+                    <p class="event-date">{{eventData.date}}</p>
+                    <button class="apply-btn" onclick="window.location.href='/register?event={{eventType}}'">{{eventData.buttonText}}</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

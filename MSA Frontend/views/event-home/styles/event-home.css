@@ -1,101 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@100..900&family=Noto+Sans+JP:wght@100..900&display=swap');
-
-
-html {
-
-    --col-theme: #ffffff;
-    --col-pri: #ED2345;
-    --col-sec1: #F18F01;
-    --col-sec2: #ADCAD6;
-    --col-txt-pri: #020300;
-
-    --site-padding: 56px;
-
-    background-color: var(--col-theme);
-    height: 100%;
-    overflow-x: hidden;
-    background: url("../assets/mascot_bg.svg") no-repeat;
-    background-size: contain;
-    background-position: center;
-}
-
-body {
-
-    margin: 0;
-    overflow-x: hidden;
-    width: 100%;
-    height: 100%;
-}
-
-html, body, *, *::before, *::after {
-
-    box-sizing: border-box;
-}
-
-#site-wrapper {
-
-    position: relative;
-    overflow-x: clip;
-}
-
-a, ul, li {
-
-    text-decoration: none;
-    list-style-type: none;
-    margin: 0;
-    width: auto;
-}
-
-h1, h2, h3, h4, h5, h6, p, a, ul, li {
-    
-    color: var(--col-txt-pri);
-}
-
-.body-txt {
-
-    font-family: 'Noto Sans JP';
-    font-weight: 300;
-    font-size: 16px;
-}
-
-.bold-body-txt {
-
-    font-weight: 700;
-}
-
-.medium-body-txt {
-
-    font-weight: 500;
-}
-
-h1, h2, h3, h4, h5, h6, p {
-
-    margin: 0;
-    overflow-wrap: anywhere;
-}
-
-h1, h2, h3, h4, h5, h6 {
-
-    font-family: "Noto Sans HK";
-    font-weight: 900;
-}
-
-h1 {
-
-    font-size: 48px;
-}
-
-h2 {
-
-    font-size: 38px;
-}
-/* Main content */
+/* Main container adjustments for fitted view */
+/* Main Layout */
+/* Main container adjustments for fitted view */
+/* Adjusted Grid: Keeps cards tighter together */
 .main {
     position: relative;
-    z-index: 1;
-    padding-top: 110px;
-    padding-bottom: 60px;
+    z-index: 0;
+    padding-top: 70px;
+    min-height: calc(100vh - 120px);
 }
 
 .container {
@@ -104,50 +15,43 @@ h2 {
     padding: 0 40px;
 }
 
-/* Page Title */
 .page-title {
-    font-size: 3rem;
-    font-weight: 700;
-    text-align: center;
+    margin-left:150px;
     margin-bottom: 1rem;
-    color: #333;
+    font-size:24px;
     position: relative;
-    padding-bottom: 1rem;
+    /* ...underline effect */
 }
 
 .page-title::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background-color: #ff6b35;
+    bottom: -8px;
+    left: 0;
+    width: 30px; 
+    height: 2px;
+    background-color: #ff6b35; /* Orange color */
     border-radius: 2px;
 }
 
-/* Section Title */
 .section-title {
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin-bottom: 2.5rem;
-    color: #333;
     text-align: center;
+    font-size: 18px; 
+    font-weight:900;
 }
 
-/* Events grid */
 .events-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2.5rem;
-    margin-top: 2rem;
-    max-width: 1000px;
+    grid-template-columns: repeat(3, 3fr);
+    gap: 2.5rem; /* Reduced gap */
+    margin-top: 1rem;
+    max-width: 1000px; /* Reduced from 1000px to make cards smaller */
     margin-left: auto;
     margin-right: auto;
 }
 
-/* Event cards */
+
+/* Event Cards - Even sizing */
 .event-card {
     background: white;
     border-radius: 16px;
@@ -157,6 +61,8 @@ h2 {
     display: flex;
     flex-direction: column;
     height: 100%;
+    min-height: 250px; /* Ensure consistent height */
+    position: relative; /* Required for absolute positioning of button */
 }
 
 .event-card:hover {
@@ -164,9 +70,10 @@ h2 {
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
+/* Adjusted Image Height: Makes the card shorter */
 .event-image {
     width: 100%;
-    height: 280px;
+    height: 250px; /* Changed from 200px */
     overflow: hidden;
     background-color: #f0f0f0;
 }
@@ -182,41 +89,47 @@ h2 {
     transform: scale(1.05);
 }
 
+/* Adjusted Content Padding */
 .event-content {
-    padding: 2rem;
+    padding: 0.5rem 1rem; /* Consistent padding */
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: 1; /* Take remaining space */
     justify-content: space-between;
 }
 
+
 .event-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 0.75rem;
-    color: #333;
-    text-align: left;
+    font-size: 1.25rem;
+    margin-bottom:0;
 }
 
 .event-date {
-    color: #666;
-    margin-bottom: 1.5rem;
+    margin: 0 0;
     font-size: 1rem;
-    text-align: left;
+
 }
 
+/* Event actions row - date and button on same line */
+.event-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+/* Apply Button: In event actions row */
 .apply-btn {
     background-color: #4CAF50;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
     color: white;
     border: none;
-    padding: 0.875rem 2rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    align-self: flex-end;
-    margin-top: auto;
+    position: static; /* Changed from absolute */
+    margin-right: 2px; /* Push to right */
 }
 
 .apply-btn:hover {
@@ -226,66 +139,4 @@ h2 {
 
 .apply-btn:active {
     transform: translateY(0);
-}
-
-/* Responsive design */
-@media (max-width: 968px) {
-    .events-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        max-width: 600px;
-    }
-}
-
-@media (max-width: 768px) {
-    .main {
-        padding-top: 80px;
-    }
-
-    .container {
-        padding: 0 20px;
-    }
-
-    .page-title {
-        font-size: 2.5rem;
-    }
-
-    .section-title {
-        font-size: 1.5rem;
-        margin-bottom: 2rem;
-    }
-
-    .events-grid {
-        gap: 1.5rem;
-    }
-
-    .event-image {
-        height: 240px;
-    }
-
-    .event-content {
-        padding: 1.5rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .page-title {
-        font-size: 2rem;
-    }
-
-    .section-title {
-        font-size: 1.3rem;
-    }
-
-    .event-image {
-        height: 200px;
-    }
-
-    .event-content {
-        padding: 1.25rem;
-    }
-
-    .event-title {
-        font-size: 1.25rem;
-    }
 }

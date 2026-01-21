@@ -1,0 +1,36 @@
+@import "./index.css";
+@import "../../view-partials/navbar/styles/navbar_responsive.css";
+@import "../../view-partials/footer/styles/footer_responsive.css";
+
+/*Ultrawide*/
+@media screen and (min-width:3400px) and (min-height: 700px) {
+
+    body {
+
+        padding: 0 12%;
+    }
+}
+
+/*Mobile*/
+@media screen and (max-width: 600px){
+
+    html {
+
+        --site-padding: 20px;
+    }
+
+    h1 {
+
+        font-size: 28px;
+    }
+
+    h2 {
+
+        font-size: 26px;
+    }
+
+    h3 {
+
+        font-size: 18px;
+    }
+}
