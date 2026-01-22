@@ -2,45 +2,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@100..900&family=Noto+Sans+JP:wght@100..900&display=swap');
 
 html {
+
     --col-theme: #ffffff;
     --col-pri: #ED2345;
     --col-sec1: #F18F01;
     --col-sec2: #ADCAD6;
     --col-txt-pri: #020300;
+
     --site-padding: 56px;
 
-    height: 100%;
-    overflow-x: hidden;
-}
-
-html {
-    --col-theme: #ffffff;
-    --col-pri: #ED2345;
-    --col-sec1: #F18F01;
-    --col-sec2: #ADCAD6;
-    --col-txt-pri: #020300;
-    --site-padding: 56px;
-
+    background-color: var(--col-theme);
     height: 100%;
     overflow-x: hidden;
     background: url("/index/assets/mascot_bg.svg") no-repeat;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
-    background-attachment: fixed;
 }
 
 body {
+
     margin: 0;
     overflow-x: hidden;
     width: 100%;
     height: 100%;
-    background-image: url("/index/assets/mascot_bg.svg") no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 300;
 }
 
 html, body, *, *::before, *::after {
+
     box-sizing: border-box;
 }
 
@@ -53,6 +43,9 @@ html, body, *, *::before, *::after {
 a, ul, li {
 
     text-decoration: none;
+    list-style-type: none;
+    margin: 0;
+    width: auto;
 }
 
 h1, h2, h3, h4, h5, h6, p, a, ul, li {

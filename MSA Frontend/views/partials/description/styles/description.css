@@ -40,6 +40,19 @@
     font-weight: 600;
     margin: 0 0 1.5rem 0;
     color: #333;
+    position: relative;
+    display: inline-block;
+}
+
+.event-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #F18F01 0%, rgba(241, 143, 1, 0) 100%);
+    border-radius: 2px;
 }
 
 .event-description-text {
@@ -66,17 +79,18 @@
 }
 
 .apply-btn {
-    background-color: #4CAF50;
+    background-color: #ed2345;
     padding: 0.8rem 2rem;
     font-size: 1rem;
     border-radius: 8px;
     color: white;
+    text-decoration: none;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .apply-btn:hover {
-    background-color: #45a049;
+    background-color: #d91f3e;
     transform: translateY(-2px);
 }

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{#if isFootball}}Football{{else}}Basketball{{/if}} Registration - Momentum Sports</title>
+    <link rel="stylesheet" href="/index/styles/index.css">
+    <link rel="stylesheet" href="/partials/navbar/styles/navbar.css">
+    <link rel="stylesheet" href="/partials/registration/styles/registration.css">
+</head>
+<body>
+    {{> navbar}}
+
+    <main class="registration">
+        <div class="banner">
+            {{#if isFootball}}
+                <img src="/partials/description/assets/football-banner.png" alt="Football banner">
+            {{else}}
+                <img src="/partials/description/assets/basketball-banner.PNG" alt="Basketball banner">
+            {{/if}}
+        </div>
+
+        <section class="form-wrapper">
+            <div class="form-header">
+                <h1 class="form-title">Application Form: {{#if isFootball}}Football{{else}}Basketball{{/if}}</h1>
+            </div>
+
+            <form class="form-card">
+                {{#if isFootball}}
+                <h2 class="section-title">Player Information</h2>
+                <div class="field-grid two-col">
+                    <label class="field">
+                        <span>Full Names as appears in ID</span>
+                        <input type="text" name="playerFullName" placeholder="Full Names">
+                    </label>
+                    <label class="field">
+                        <span>Gender</span>
+                        <select name="playerGender">
+                            <option value="">Select</option>
+                            <option value="female">Female</option>
+                            <option value="male">Male</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Email</span>
+                        <input type="email" name="playerEmail" placeholder="Email">
+                    </label>
+                    <label class="field">
+                        <span>Age</span>
+                        <input type="number" name="playerAge" placeholder="Age">
+                    </label>
+                    <label class="field">
+                        <span>City/Area</span>
+                        <input type="text" name="playerCity" placeholder="City/Area">
+                    </label>
+                    <label class="field">
+                        <span>Phone number</span>
+                        <input type="tel" name="playerPhone" placeholder="Phone number">
+                    </label>
+                    <label class="field">
+                        <span>Alternative phone number</span>
+                        <input type="tel" name="playerAltPhone" placeholder="Alternative phone number">
+                    </label>
+                </div>
+
+                <h2 class="section-title">Player Information</h2>
+                <div class="field-grid two-col">
+                    <label class="field">
+                        <span>Position in the field</span>
+                        <select name="playerPosition">
+                            <option value="">Select</option>
+                            <option value="goalkeeper">Goalkeeper</option>
+                            <option value="defender">Defender</option>
+                            <option value="midfielder">Midfielder</option>
+                            <option value="forward">Forward</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Any other playing position</span>
+                        <select name="playerOtherPosition">
+                            <option value="">Select</option>
+                            <option value="goalkeeper">Goalkeeper</option>
+                            <option value="defender">Defender</option>
+                            <option value="midfielder">Midfielder</option>
+                            <option value="forward">Forward</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Are you in a team at the moment. If so, whats the name of the team</span>
+                        <input type="text" name="playerCurrentTeam" placeholder="Team name">
+                    </label>
+                    <label class="field">
+                        <span>Previous team, if any</span>
+                        <input type="text" name="playerPreviousTeam" placeholder="Previous team">
+                    </label>
+                </div>
+
+                <h2 class="section-title">Player Information</h2>
+                <p class="section-note">Note: By providing us with injury history, this helps us to provide you with best possible ways to unleash your playing potential while also observing legal measures.</p>
+                <div class="field-grid two-col">
+                    <label class="field">
+                        <span>Have you previously been injured within the past 1 year or currently recovering.</span>
+                        <select name="playerInjury">
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>How did you hear about Momentum Sports Africa</span>
+                        <input type="text" name="playerReferral" placeholder="Referral">
+                    </label>
+                    <label class="field">
+                        <span>Would you like to be informed about similar events done by Momentum Sports Africa</span>
+                        <select name="playerUpdates">
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </label>
+                </div>
+                {{else}}
+                <h2 class="section-title">Parent Information</h2>
+                <div class="field-grid two-col">
+                    <label class="field">
+                        <span>First Name</span>
+                        <input type="text" name="parentFirstName" placeholder="First Name">
+                    </label>
+                    <label class="field">
+                        <span>Last Name</span>
+                        <input type="text" name="parentLastName" placeholder="Last Name">
+                    </label>
+                    <label class="field">
+                        <span>Email</span>
+                        <input type="email" name="parentEmail" placeholder="Email">
+                    </label>
+                    <label class="field">
+                        <span>Relationship to the player</span>
+                        <select name="parentRelationship">
+                            <option value="">Select</option>
+                            <option value="mother">Mother</option>
+                            <option value="father">Father</option>
+                            <option value="guardian">Guardian</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Phone Number</span>
+                        <input type="tel" name="parentPhone" placeholder="Phone Number">
+                    </label>
+                    <label class="field">
+                        <span>Secondary Phone Number</span>
+                        <input type="tel" name="parentSecondaryPhone" placeholder="Secondary Phone Number">
+                    </label>
+                </div>
+
+                <h2 class="section-title">Player Information</h2>
+                <div class="field-grid two-col">
+                    <label class="field">
+                        <span>Full Names as appears in ID</span>
+                        <input type="text" name="playerFullName" placeholder="Full Names">
+                    </label>
+                    <label class="field">
+                        <span>Gender</span>
+                        <select name="playerGender">
+                            <option value="">Select</option>
+                            <option value="female">Female</option>
+                            <option value="male">Male</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Email</span>
+                        <input type="email" name="playerEmail" placeholder="Email">
+                    </label>
+                    <label class="field">
+                        <span>Age</span>
+                        <input type="number" name="playerAge" placeholder="Age">
+                    </label>
+                    <label class="field">
+                        <span>City/Area</span>
+                        <input type="text" name="playerCity" placeholder="City/Area">
+                    </label>
+                    <label class="field">
+                        <span>Phone Number</span>
+                        <input type="tel" name="playerPhone" placeholder="Phone Number">
+                    </label>
+                </div>
+
+                <h2 class="section-title">Player Information</h2>
+                <div class="field-grid two-col">
+                    <label class="field">
+                        <span>Position in the field</span>
+                        <input type="text" name="playerPosition" placeholder="Position in the field">
+                    </label>
+                    <label class="field">
+                        <span>Any other playing position</span>
+                        <input type="text" name="playerOtherPosition" placeholder="Other position">
+                    </label>
+                    <label class="field">
+                        <span>Current School</span>
+                        <input type="text" name="playerSchool" placeholder="Current School">
+                    </label>
+                    <label class="field">
+                        <span>Are you currently playing for the school team</span>
+                        <select name="playerSchoolTeam">
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </label>
+                </div>
+
+                <h2 class="section-title">Player Assessment</h2>
+                <div class="field-grid one-col">
+                    <label class="field">
+                        <span>Have you previously been injured within the past 1 year or currently recovering.</span>
+                        <select name="playerInjury">
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>How did you hear about Momentum Sports Africa</span>
+                        <input type="text" name="playerReferral" placeholder="Referral">
+                    </label>
+                    <label class="field">
+                        <span>Would you like to be informed about similar events done by Momentum Sports Africa</span>
+                        <select name="playerUpdates">
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </label>
+                </div>
+                {{/if}}
+
+                <h2 class="section-title">Player Information: Video Upload</h2>
+                <p class="section-note">Kindly upload two videos that showcase your sport skills</p>
+                <div class="upload-box">
+                    <input type="file" name="playerVideo" accept="video/*" multiple>
+                    <span>Choose file or drag and drop</span>
+                    <small>.mp4 .mov up to 20mb each</small>
+                </div>
+
+                <div class="consent-list">
+                    <label class="checkbox">
+                        <input type="checkbox" name="consentTerms">
+                        <span>I confirm the information provided is accurate.</span>
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" name="consentMarketing">
+                        <span>I agree to receive updates about Momentum Sports Africa events.</span>
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="secondary-btn">Save & Continue Later</button>
+                    <button type="submit" class="primary-btn">Finish Application</button>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

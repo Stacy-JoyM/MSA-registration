@@ -1,0 +1,190 @@
+/* Registration page styles */
+.registration {
+    min-height: 100vh;
+    background-color: #f8f8f8;
+}
+
+body {
+    background-color: #ffffff;
+    background-image: url("/index/assets/mascot_bg.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-attachment: fixed;
+}
+
+.banner {
+    width: 100vw;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    min-width: 100%;
+}
+
+.form-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0px 24px 48px;
+}
+
+.form-header {
+    margin: 24px 0 16px;
+}
+
+.form-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #222;
+}
+
+.form-title::after {
+    content: "";
+    display: block;
+    margin-top: 8px;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #F18F01 0%, rgba(241, 143, 1, 0) 100%);
+    border-radius: 2px;
+}
+
+.form-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    background-image: url("/index/assets/mascot_bg.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 520px;
+    background-blend-mode: multiply;
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 8px 0 16px;
+    color: #222;
+}
+
+.section-note {
+    margin: 0 0 16px;
+    color: #444;
+    font-size: 13px;
+}
+
+.field-grid {
+    display: grid;
+    gap: 16px 24px;
+    margin-bottom: 24px;
+}
+
+.field-grid.two-col {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.field-grid.one-col {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 13px;
+    color: #222;
+}
+
+.field input,
+.field select {
+    height: 36px;
+    padding: 0 12px;
+    border: 1px solid #e2e2e2;
+    border-radius: 18px;
+    background: #f2f2f2;
+    font-size: 13px;
+}
+
+.upload-box {
+    border: 2px dashed #cfcfcf;
+    border-radius: 12px;
+    padding: 20px;
+    display: grid;
+    gap: 6px;
+    text-align: center;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.upload-box input[type="file"] {
+    margin: 0 auto;
+}
+
+.consent-list {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 12px;
+    color: #444;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.secondary-btn,
+.primary-btn {
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.secondary-btn {
+    background: #2d4cc8;
+    color: #fff;
+}
+
+.primary-btn {
+    background: #1a8f3a;
+    color: #fff;
+}
+
+@media (max-width: 900px) {
+    .form-card {
+        background-size: 420px;
+    }
+
+    .field-grid.two-col {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .form-wrapper {
+        padding: 16px;
+    }
+
+    .form-card {
+        padding: 20px;
+    }
+}

@@ -5,18 +5,26 @@
 .main {
     position: relative;
     z-index: 0;
-    padding-top: 70px;
+    padding-top: 110px;
     min-height: calc(100vh - 120px);
+}
+
+body {
+    background-color: #ffffff;
+    background-image: url("/index/assets/mascot_bg.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 20px;
 }
 
 .page-title {
-    margin-left:150px;
+    margin-left:90px;
     margin-bottom: 1rem;
     font-size:24px;
     position: relative;
@@ -28,9 +36,9 @@
     position: absolute;
     bottom: -8px;
     left: 0;
-    width: 30px; 
+    width: 40px; 
     height: 2px;
-    background-color: #ff6b35; /* Orange color */
+    background: linear-gradient(90deg, #F18F01 0%, rgba(241, 143, 1, 0) 100%);
     border-radius: 2px;
 }
 
@@ -100,13 +108,13 @@
 
 
 .event-title {
-    font-size: 1.25rem;
+    font-size: 1rem;
     margin-bottom:0;
 }
 
 .event-date {
     margin: 0 0;
-    font-size: 1rem;
+    font-size: 0.9rem;
 
 }
 
@@ -120,11 +128,12 @@
 
 /* Apply Button: In event actions row */
 .apply-btn {
-    background-color: #4CAF50;
+    background-color: #ed2345;
     padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
     border-radius: 6px;
-    color: white;
+    color: #fff;
+    text-decoration: none;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
@@ -133,7 +142,7 @@
 }
 
 .apply-btn:hover {
-    background-color: #45a049;
+    background-color: #d91f3e;
     transform: translateY(-2px);
 }
 

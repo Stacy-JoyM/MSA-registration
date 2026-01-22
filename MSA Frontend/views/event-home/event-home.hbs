@@ -25,7 +25,7 @@
                             <h3 class="event-title">Basketball Event</h3>
                             <div class="event-actions">
                                 <p class="event-date">Happening April</p>
-                                <button class="apply-btn" onclick="applyToEvent('basketball')">Apply</button>
+                                <a class="apply-btn" href="/description/basketball">Apply</a>
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                             <h3 class="event-title">Football Event</h3>
                             <div class="event-actions">
                                 <p class="event-date">Happening August</p>
-                                <button class="apply-btn" onclick="applyToEvent('football')">Apply</button>
+                                <a class="apply-btn" href="/description/football">Apply</a>
                             </div>
                         </div>
                     </div>
@@ -47,10 +47,5 @@
         </div>
     </main>
 
-    <script>
-        function applyToEvent(eventType) {
-            window.location.href = `/description/${eventType}`;
-        }
-    </script>
 </body>
 </html>
