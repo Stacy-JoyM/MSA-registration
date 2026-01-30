@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/index/styles/index.css">
+    <link rel="stylesheet" href="/admin/styles/admin.css">
+</head>
+<body>
+    <main class="admin">
+        <header class="admin-header">
+            <div>
+                <p class="admin-kicker">Admin Dashboard</p>
+                <h1 class="admin-title">Momentum Sports Applications</h1>
+            </div>
+            <div class="admin-actions">
+                <select id="eventFilter" class="admin-select">
+                    <option value="basketball">Basketball</option>
+                    <option value="football">Football</option>
+                </select>
+                <button id="logoutBtn" class="admin-btn ghost hidden">Log out</button>
+            </div>
+        </header>
+
+        <section id="loginCard" class="admin-card login-card">
+            <h2>Admin Access</h2>
+            <p>Enter the admin password to view applications.</p>
+            <form id="loginForm" class="login-form">
+                <input type="password" id="adminPassword" placeholder="Admin password" required>
+                <button type="submit" class="admin-btn">Sign in</button>
+            </form>
+        </section>
+
+        <section id="dashboard" class="admin-dashboard hidden">
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <p>Total applicants</p>
+                    <h3 id="summaryTotal">0</h3>
+                </div>
+                <div class="summary-card">
+                    <p>Shortlisted</p>
+                    <h3 id="summaryShortlisted">0</h3>
+                </div>
+                <div class="summary-card">
+                    <p>Selected</p>
+                    <h3 id="summarySelected">0</h3>
+                </div>
+                <div class="summary-card">
+                    <p>Paid</p>
+                    <h3 id="summaryPaid">0</h3>
+                </div>
+            </div>
+
+            <div id="basketballTable" class="admin-table-wrap">
+                <div class="table-header">
+                    <h2>Basketball Applicants</h2>
+                    <button id="refreshBtn" class="admin-btn ghost">Refresh</button>
+                </div>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Player Name</th>
+                            <th>Age</th>
+                            <th>Position</th>
+                            <th>Gender</th>
+                            <th>Parent Name</th>
+                            <th>Parent Contact</th>
+                            <th>Injury</th>
+                            <th>Videos</th>
+                            <th>Status</th>
+                            <th>Acceptance Email</th>
+                        </tr>
+                    </thead>
+                    <tbody id="basketballApplicationsBody">
+                        <tr>
+                            <td colspan="10" class="empty-state">No applications yet.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="footballTable" class="admin-table-wrap hidden">
+                <div class="table-header">
+                    <h2>Football Applicants</h2>
+                </div>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Player Name</th>
+                            <th>Age</th>
+                            <th>Position</th>
+                            <th>Gender</th>
+                            <th>Team</th>
+                            <th>Contact</th>
+                            <th>Injury</th>
+                            <th>Video</th>
+                            <th>Status</th>
+                            <th>Acceptance Email</th>
+                        </tr>
+                    </thead>
+                    <tbody id="footballApplicationsBody">
+                        <tr>
+                            <td colspan="10" class="empty-state">No applications yet.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        window.API_BASE_URL = "{{apiBaseUrl}}";
+    </script>
+    <script src="/admin/scripts/admin.js"></script>
+</body>
+</html>
