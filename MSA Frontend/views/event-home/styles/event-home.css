@@ -51,15 +51,9 @@ body {
 .events-grid {
     display: grid;
     grid-template-columns: repeat(3, 3fr);
-<<<<<<< HEAD
     gap: 2.5rem; /* Reduced gap */
     margin-top: 1rem;
     max-width: 1000px; /* Reduced from 1000px to make cards smaller */
-=======
-    gap: 2rem; /* Reduced gap */
-    margin-top: 1rem;
-    max-width: 920px; /* Narrower grid so cards appear smaller */
->>>>>>> a203da8 (Basketball description Added)
     margin-left: auto;
     margin-right: auto;
 }
@@ -67,7 +61,6 @@ body {
 
 /* Event Cards - Even sizing */
 .event-card {
-<<<<<<< HEAD
     background: white;
     border-radius: 16px;
     overflow: hidden;
@@ -83,52 +76,14 @@ body {
 .event-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-=======
-    background: linear-gradient(180deg, #ffffff 0%, #fbfbff 100%);
-    border-radius: 18px;
-    overflow: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.04);
-    box-shadow: 0 6px 24px rgba(17, 24, 39, 0.08);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.5s ease;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    min-height: 220px; /* Ensure consistent height */
-    position: relative; /* Required for absolute positioning of button */
-}
-
-.event-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 18px;
-    padding: 1px;
-    background: linear-gradient(135deg, rgba(237, 35, 69, 0.35), rgba(241, 143, 1, 0.25), rgba(79, 70, 229, 0.2));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-}
-
-.event-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 32px rgba(17, 24, 39, 0.12);
->>>>>>> a203da8 (Basketball description Added)
 }
 
 /* Adjusted Image Height: Makes the card shorter */
 .event-image {
     width: 100%;
-<<<<<<< HEAD
     height: 250px; /* Changed from 200px */
     overflow: hidden;
     background-color: #f0f0f0;
-=======
-    height: 200px; /* Shorter image to reduce card height */
-    overflow: hidden;
-    background-color: #f0f0f0;
-    position: relative;
->>>>>>> a203da8 (Basketball description Added)
 }
 
 .event-image img {
@@ -138,58 +93,28 @@ body {
     transition: transform 0.3s ease;
 }
 
-<<<<<<< HEAD
-=======
-.event-image::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.18) 100%);
-    pointer-events: none;
-}
-
->>>>>>> a203da8 (Basketball description Added)
 .event-card:hover .event-image img {
     transform: scale(1.05);
 }
 
 /* Adjusted Content Padding */
 .event-content {
-<<<<<<< HEAD
     padding: 0.5rem 1rem; /* Consistent padding */
-=======
-    padding: 0.45rem 0.9rem; /* Slightly tighter padding */
->>>>>>> a203da8 (Basketball description Added)
     display: flex;
     flex-direction: column;
     flex: 1; /* Take remaining space */
     justify-content: space-between;
-<<<<<<< HEAD
-=======
-    gap: 0.35rem;
->>>>>>> a203da8 (Basketball description Added)
 }
 
 
 .event-title {
-<<<<<<< HEAD
     font-size: 1rem;
-=======
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: #111827;
->>>>>>> a203da8 (Basketball description Added)
     margin-bottom:0;
 }
 
 .event-date {
     margin: 0 0;
-<<<<<<< HEAD
     font-size: 0.9rem;
-=======
-    font-size: 0.85rem;
-    color: #6b7280;
->>>>>>> a203da8 (Basketball description Added)
 
 }
 
@@ -204,28 +129,16 @@ body {
 /* Apply Button: In event actions row */
 .apply-btn {
     background-color: #ed2345;
-<<<<<<< HEAD
     padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
-=======
-    padding: 0.5rem 1rem;
-    font-size: 0.85rem;
->>>>>>> a203da8 (Basketball description Added)
     border-radius: 6px;
     color: #fff;
     text-decoration: none;
     border: none;
     cursor: pointer;
-<<<<<<< HEAD
     transition: background-color 0.3s ease, transform 0.2s ease;
     position: static; /* Changed from absolute */
     margin-right: 2px; /* Push to right */
-=======
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    position: static; /* Changed from absolute */
-    margin-right: 2px; /* Push to right */
-    box-shadow: 0 6px 14px rgba(237, 35, 69, 0.25);
->>>>>>> a203da8 (Basketball description Added)
 }
 
 .apply-btn:hover {

@@ -42,11 +42,7 @@ body {
 }
 
 .form-title {
-<<<<<<< HEAD
     font-size: 24px;
-=======
-    font-size: 28px;
->>>>>>> a203da8 (Basketball description Added)
     font-weight: 600;
     color: #222;
 }
@@ -74,11 +70,7 @@ body {
 }
 
 .section-title {
-<<<<<<< HEAD
     font-size: 16px;
-=======
-    font-size: 18px;
->>>>>>> a203da8 (Basketball description Added)
     font-weight: 700;
     margin: 8px 0 16px;
     color: #222;
@@ -87,11 +79,7 @@ body {
 .section-note {
     margin: 0 0 16px;
     color: #444;
-<<<<<<< HEAD
     font-size: 13px;
-=======
-    font-size: 15px;
->>>>>>> a203da8 (Basketball description Added)
 }
 
 .field-grid {
@@ -112,30 +100,18 @@ body {
     display: flex;
     flex-direction: column;
     gap: 8px;
-<<<<<<< HEAD
     font-size: 13px;
-=======
-    font-size: 15px;
->>>>>>> a203da8 (Basketball description Added)
     color: #222;
 }
 
 .field input,
 .field select {
-<<<<<<< HEAD
     height: 36px;
-=======
-    height: 40px;
->>>>>>> a203da8 (Basketball description Added)
     padding: 0 12px;
     border: 1px solid #e2e2e2;
     border-radius: 18px;
     background: #f2f2f2;
-<<<<<<< HEAD
     font-size: 13px;
-=======
-    font-size: 15px;
->>>>>>> a203da8 (Basketball description Added)
 }
 
 .upload-box {
@@ -163,11 +139,7 @@ body {
     display: flex;
     align-items: flex-start;
     gap: 10px;
-<<<<<<< HEAD
     font-size: 12px;
-=======
-    font-size: 14px;
->>>>>>> a203da8 (Basketball description Added)
     color: #444;
 }
 
@@ -179,20 +151,12 @@ body {
 
 .secondary-btn,
 .primary-btn {
-<<<<<<< HEAD
     height: 36px;
-=======
-    height: 40px;
->>>>>>> a203da8 (Basketball description Added)
     padding: 0 16px;
     border-radius: 8px;
     border: none;
     cursor: pointer;
-<<<<<<< HEAD
     font-size: 12px;
-=======
-    font-size: 14px;
->>>>>>> a203da8 (Basketball description Added)
 }
 
 .secondary-btn {
