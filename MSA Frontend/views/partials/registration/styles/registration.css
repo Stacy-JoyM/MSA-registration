@@ -42,7 +42,7 @@ body {
 }
 
 .form-title {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 600;
     color: #222;
 }
@@ -70,16 +70,30 @@ body {
 }
 
 .section-title {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
     margin: 8px 0 16px;
     color: #222;
 }
 
+.section-title.emphasis-title {
+    font-size: 20px;
+}
+
+
 .section-note {
     margin: 0 0 16px;
-    color: #444;
-    font-size: 13px;
+    color: #222;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.section-note strong {
+    font-weight: 700;
+}
+
+.eligibility-text {
+    font-weight: 400;
 }
 
 .field-grid {
@@ -104,6 +118,90 @@ body {
     color: #222;
 }
 
+.field > span {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.field > span::after {
+    content: " *";
+    color: #d64545;
+    font-weight: 600;
+}
+
+.field > span.optional::after {
+    content: "";
+}
+
+.eligibility .field > span {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.player-assessment .field > span {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.eligibility .consent-list {
+    gap: 8px;
+    margin-bottom: 0;
+}
+
+.eligibility .checkbox {
+    font-size: 14px;
+    align-items: center;
+}
+
+.eligibility .checkbox input {
+    margin-top: 0;
+}
+
+.highest-level {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.highest-level .checkbox {
+    align-items: center;
+    padding: 8px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    background: #f7f7f7;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.highest-level .checkbox input {
+    margin-top: 0;
+}
+
+.highest-level .checkbox span {
+    font-weight: 600;
+}
+
+.highest-level .checkbox:focus-within {
+    border-color: #2d4cc8;
+    background: #f0f4ff;
+}
+
+.elite-camp {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 16px;
+    margin-bottom: 8px;
+}
+
+.elite-camp .checkbox {
+    align-items: center;
+}
+
+@media (max-width: 600px) {
+    .highest-level {
+        grid-template-columns: 1fr;
+    }
+}
+
 .field input,
 .field select {
     height: 36px;
@@ -111,7 +209,30 @@ body {
     border: 1px solid #e2e2e2;
     border-radius: 18px;
     background: #f2f2f2;
-    font-size: 13px;
+    font-size: 14px;
+}
+
+.field input.field-error,
+.field select.field-error,
+.field textarea.field-error,
+.field input.field-error:focus,
+.field select.field-error:focus,
+.field textarea.field-error:focus {
+    border-color: #d64545;
+    background: #fff5f5;
+    outline: none;
+}
+
+.checkbox.field-error {
+    color: #b02a2a;
+    border: 1px solid #d64545;
+    border-radius: 10px;
+    padding: 8px 10px;
+    background: #fff5f5;
+}
+
+.checkbox.field-error input {
+    outline: none;
 }
 
 .upload-box {
@@ -123,16 +244,109 @@ body {
     text-align: center;
     margin-bottom: 20px;
     background: rgba(255, 255, 255, 0.6);
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.upload-box.field-error {
+    border-color: #d64545;
+    background: #fff5f5;
+}
+
+.upload-box.field-error span,
+.upload-box.field-error small {
+    color: #b02a2a;
+}
+
+.upload-status {
+    margin-top: 8px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #f6f7f9;
+    color: #5a5a5a;
+    font-size: 14px;
+    text-align: left;
+}
+
+.upload-status-title {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.upload-status.has-files {
+    background: #eef7f1;
+    color: #1f6f3f;
+    border: 1px solid #b9e0c6;
+}
+
+.upload-status.has-files .upload-status-title {
+    color: #1f6f3f;
+}
+
+.upload-file-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 4px;
+}
+
+.upload-file-list li::before {
+    content: "✓";
+    color: #1f6f3f;
+    margin-right: 8px;
 }
 
 .upload-box input[type="file"] {
     margin: 0 auto;
 }
 
+.upload-box small {
+    font-size: 14px;
+    font-weight: 400;
+    color: #444;
+}
+
+.upload-box span {
+    font-weight: 400;
+}
+
 .consent-list {
     display: grid;
     gap: 12px;
     margin-bottom: 24px;
+}
+
+.consent-list .checkbox {
+    font-size: 14px;
+}
+
+.consent-list.emphasis-text .checkbox {
+    font-size: 14px;
+}
+
+.consent-list.emphasis-text .checkbox span {
+    font-weight: 400;
+}
+
+.consent-paragraph {
+    margin: 0 0 24px;
+    color: #444;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.consent-paragraph.emphasis-text {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.checkbox .consent-paragraph {
+    display: block;
+    margin: 0;
+    font-weight: 400;
+    font-size: 14px;
 }
 
 .checkbox {
@@ -147,6 +361,30 @@ body {
     display: flex;
     justify-content: flex-end;
     gap: 12px;
+}
+
+.form-message {
+    margin: 0 auto 0 0;
+    font-size: 13px;
+    color: #b02a2a;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.page-message {
+    margin: 0 auto 40px;
+    max-width: 1000px;
+    padding: 0 24px;
+}
+
+.form-message.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    background: #fff5f5;
+    border: 1px solid #f1b5b5;
+    padding: 10px 12px;
+    border-radius: 8px;
 }
 
 .secondary-btn,

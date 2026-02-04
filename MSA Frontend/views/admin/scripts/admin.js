@@ -5,11 +5,14 @@ const passwordInput = document.getElementById('adminPassword');
 const logoutBtn = document.getElementById('logoutBtn');
 const eventFilter = document.getElementById('eventFilter');
 const refreshBtn = document.getElementById('refreshBtn');
+const reconnectGmailBtn = document.getElementById('reconnectGmailBtn');
+const gmailStatus = document.getElementById('gmailStatus');
 
-const summaryTotal = document.getElementById('summaryTotal');
+const summaryApplied = document.getElementById('summaryApplied');
 const summaryShortlisted = document.getElementById('summaryShortlisted');
 const summarySelected = document.getElementById('summarySelected');
 const summaryPaid = document.getElementById('summaryPaid');
+const summaryRejected = document.getElementById('summaryRejected');
 const basketballTable = document.getElementById('basketballTable');
 const footballTable = document.getElementById('footballTable');
 const basketballApplicationsBody = document.getElementById('basketballApplicationsBody');
@@ -18,8 +21,9 @@ const footballApplicationsBody = document.getElementById('footballApplicationsBo
 const STATUS_OPTIONS = [
     { value: 'applied', label: 'Applied' },
     { value: 'shortlisted', label: 'Shortlisted' },
-    { value: 'selected', label: 'Selected' },
-    { value: 'paid', label: 'Paid' }
+    { value: 'selected', label: 'Accepted' },
+    { value: 'paid', label: 'Paid' },
+    { value: 'rejected', label: 'Rejected' }
 ];
 
 const state = {
@@ -32,9 +36,77 @@ const setAuthUI = (isAuthenticated) => {
     logoutBtn.classList.toggle('hidden', !isAuthenticated);
 };
 
+const setGmailStatus = (status) => {
+    if (!gmailStatus) return;
+    gmailStatus.classList.remove('hidden', 'connected', 'disconnected');
+    if (status === 'connected') {
+        gmailStatus.textContent = 'Gmail connected';
+        gmailStatus.classList.add('connected');
+    } else if (status === 'expired') {
+        gmailStatus.textContent = 'Gmail expired';
+        gmailStatus.classList.add('disconnected');
+    } else {
+        gmailStatus.textContent = 'Gmail not connected';
+        gmailStatus.classList.add('disconnected');
+    }
+};
+
+const checkApiHealth = async () => {
+    try {
+        const response = await fetch(`${window.API_BASE_URL}/health`);
+        return response.ok;
+    } catch (error) {
+        return false;
+    }
+};
+
+const checkGmailStatus = async () => {
+    if (!gmailStatus || !reconnectGmailBtn) return;
+    try {
+        const response = await fetch(`${window.API_BASE_URL}/api/admin/auth/status`);
+        const status = await response.json();
+        if (status.connected && !status.expired) {
+            setGmailStatus('connected');
+            reconnectGmailBtn.classList.add('hidden');
+        } else if (status.connected && status.expired) {
+            setGmailStatus('expired');
+            reconnectGmailBtn.classList.remove('hidden');
+        } else {
+            setGmailStatus('disconnected');
+            reconnectGmailBtn.classList.remove('hidden');
+        }
+    } catch (error) {
+        console.error('Failed to check Gmail status:', error);
+        setGmailStatus('disconnected');
+        reconnectGmailBtn.classList.remove('hidden');
+    }
+};
+
 const setStatusStyle = (select, status) => {
     if (!select) return;
     select.dataset.status = status || 'applied';
+};
+
+const getEmailSentKey = (type, application, eventType) => {
+    const id = application?.id || application?._id;
+    if (id) {
+        return `msaAdminEmailSent:${type}:${id}`;
+    }
+    const email = getRecipientEmail(application, eventType) || 'unknown';
+    const name = application?.playerFullName || application?.parentFirstName || 'unknown';
+    return `msaAdminEmailSent:${type}:${eventType || 'event'}:${email}:${name}`;
+};
+
+const isEmailSent = (type, application, eventType) => {
+    if (type === 'acceptance' && application?.emailSentAcceptance) return true;
+    if (type === 'rejection' && application?.emailSentRejection) return true;
+    const key = getEmailSentKey(type, application, eventType);
+    return localStorage.getItem(key) === 'true';
+};
+
+const markEmailSent = (type, application, eventType) => {
+    const key = getEmailSentKey(type, application, eventType);
+    localStorage.setItem(key, 'true');
 };
 
 const buildStatusSelect = (application) => {
@@ -118,6 +190,19 @@ const buildVideosCell = (videos) => {
     return cell;
 };
 
+const formatHighestLevel = (value) => {
+    if (!value) return '—';
+    const rawValue = Array.isArray(value) ? value[0] : value;
+    const normalized = String(rawValue).trim().toLowerCase();
+    const labels = {
+        school: 'School',
+        club: 'Club',
+        regional: 'Regional',
+        national: 'National'
+    };
+    return labels[normalized] || rawValue;
+};
+
 const getRecipientEmail = (application, eventType) => {
     if (eventType === 'basketball') {
         return application.parentEmail || '';
@@ -137,7 +222,12 @@ const buildAcceptanceCell = (application, eventType) => {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'admin-btn ghost';
-    button.textContent = 'Send';
+    if (isEmailSent('acceptance', application, eventType)) {
+        button.textContent = 'Sent';
+        button.disabled = true;
+    } else {
+        button.textContent = 'Send';
+    }
 
     button.addEventListener('click', async () => {
         const previous = button.textContent;
@@ -145,6 +235,10 @@ const buildAcceptanceCell = (application, eventType) => {
         button.textContent = 'Sending...';
 
         try {
+            const apiOk = await checkApiHealth();
+            if (!apiOk) {
+                throw new Error(`API server unreachable at ${window.API_BASE_URL}`);
+            }
             const response = await fetch(`${window.API_BASE_URL}/api/admin/send-acceptance`, {
                 method: 'POST',
                 headers: {
@@ -154,24 +248,87 @@ const buildAcceptanceCell = (application, eventType) => {
                 body: JSON.stringify({
                     email,
                     name: application.playerFullName || application.parentFirstName || 'Athlete',
-                    eventType: eventType
+                    eventType: eventType,
+                    applicationId: application.id
                 })
             });
 
             if (!response.ok) {
-                throw new Error('Failed to send email');
+                const errorPayload = await response.json().catch(() => ({}));
+                throw new Error(errorPayload.detail || errorPayload.error || 'Failed to send email');
             }
 
+            markEmailSent('acceptance', application, eventType);
             button.textContent = 'Sent';
-            setTimeout(() => {
-                button.textContent = previous;
-                button.disabled = false;
-            }, 1500);
+            button.disabled = true;
         } catch (error) {
             console.error(error);
             button.textContent = previous;
             button.disabled = false;
-            alert('Unable to send acceptance email.');
+            alert(error.message || 'Unable to send acceptance email.');
+        }
+    });
+
+    cell.appendChild(button);
+    return cell;
+};
+
+const buildRejectionCell = (application, eventType) => {
+    const cell = document.createElement('td');
+    const email = getRecipientEmail(application, eventType);
+
+    if (!email) {
+        cell.textContent = '—';
+        return cell;
+    }
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'admin-btn ghost';
+    if (isEmailSent('rejection', application, eventType)) {
+        button.textContent = 'Sent';
+        button.disabled = true;
+    } else {
+        button.textContent = 'Send';
+    }
+
+    button.addEventListener('click', async () => {
+        const previous = button.textContent;
+        button.disabled = true;
+        button.textContent = 'Sending...';
+
+        try {
+            const apiOk = await checkApiHealth();
+            if (!apiOk) {
+                throw new Error(`API server unreachable at ${window.API_BASE_URL}`);
+            }
+            const response = await fetch(`${window.API_BASE_URL}/api/admin/send-rejection`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${state.token}`
+                },
+                body: JSON.stringify({
+                    email,
+                    name: application.playerFullName || application.parentFirstName || 'Athlete',
+                    eventType: eventType,
+                    applicationId: application.id
+                })
+            });
+
+            if (!response.ok) {
+                const errorPayload = await response.json().catch(() => ({}));
+                throw new Error(errorPayload.detail || errorPayload.error || 'Failed to send email');
+            }
+
+            markEmailSent('rejection', application, eventType);
+            button.textContent = 'Sent';
+            button.disabled = true;
+        } catch (error) {
+            console.error(error);
+            button.textContent = previous;
+            button.disabled = false;
+            alert(error.message || 'Unable to send rejection email.');
         }
     });
 
@@ -181,10 +338,11 @@ const buildAcceptanceCell = (application, eventType) => {
 
 const sortApplicationsByStatus = (applications) => {
     const statusRank = {
-        selected: 0,
-        shortlisted: 1,
-        paid: 2,
-        applied: 3
+        paid: 0,
+        selected: 1,
+        shortlisted: 2,
+        applied: 3,
+        rejected: 4
     };
 
     return [...applications].sort((a, b) => {
@@ -204,7 +362,7 @@ const renderBasketballTable = (applications) => {
 
     if (!applications.length) {
         const row = document.createElement('tr');
-        row.innerHTML = '<td colspan="10" class="empty-state">No applications yet.</td>';
+        row.innerHTML = '<td colspan="12" class="empty-state">No applications yet.</td>';
         basketballApplicationsBody.appendChild(row);
         return;
     }
@@ -223,6 +381,7 @@ const renderBasketballTable = (applications) => {
             application.playerFullName || '—',
             application.playerAge || '—',
             application.playerPosition || application.playerOtherPosition || '—',
+            formatHighestLevel(application.playerHighestLevel),
             application.playerGender || '—',
             parentName || '—',
             parentContact || '—',
@@ -240,6 +399,7 @@ const renderBasketballTable = (applications) => {
         row.appendChild(buildVideosCell(videos));
         row.appendChild(statusCell);
         row.appendChild(buildAcceptanceCell(application, 'basketball'));
+        row.appendChild(buildRejectionCell(application, 'basketball'));
 
         basketballApplicationsBody.appendChild(row);
     });
@@ -250,7 +410,7 @@ const renderFootballTable = (applications) => {
 
     if (!applications.length) {
         const row = document.createElement('tr');
-        row.innerHTML = '<td colspan="10" class="empty-state">No applications yet.</td>';
+        row.innerHTML = '<td colspan="11" class="empty-state">No applications yet.</td>';
         footballApplicationsBody.appendChild(row);
         return;
     }
@@ -284,6 +444,7 @@ const renderFootballTable = (applications) => {
         row.appendChild(buildVideosCell(videos));
         row.appendChild(statusCell);
         row.appendChild(buildAcceptanceCell(application, 'football'));
+        row.appendChild(buildRejectionCell(application, 'football'));
 
         footballApplicationsBody.appendChild(row);
     });
@@ -297,10 +458,15 @@ const loadSummary = async () => {
         throw new Error('Failed to load summary');
     }
     const data = await response.json();
-    summaryTotal.textContent = data.summary.total;
+    if (summaryApplied) {
+        summaryApplied.textContent = data.summary.applied ?? 0;
+    }
     summaryShortlisted.textContent = data.summary.shortlisted;
     summarySelected.textContent = data.summary.selected;
     summaryPaid.textContent = data.summary.paid;
+    if (summaryRejected) {
+        summaryRejected.textContent = data.summary.rejected ?? 0;
+    }
 };
 
 const loadApplications = async () => {
@@ -333,6 +499,7 @@ const startDashboard = async () => {
     try {
         await refreshData();
         setAuthUI(true);
+        await checkGmailStatus();
     } catch (error) {
         console.error(error);
         state.token = '';
@@ -381,6 +548,12 @@ if (logoutBtn) {
         state.token = '';
         localStorage.removeItem('msaAdminToken');
         setAuthUI(false);
+    });
+}
+
+if (reconnectGmailBtn) {
+    reconnectGmailBtn.addEventListener('click', () => {
+        window.location.href = `${window.API_BASE_URL}/api/admin/auth/google`;
     });
 }
 

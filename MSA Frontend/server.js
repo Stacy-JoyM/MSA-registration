@@ -42,18 +42,18 @@ app.get('/description/:eventType', (req, res) => {
     const eventType = (req.params.eventType || '').toLowerCase();
     const eventMap = {
         basketball: {
-            title: 'Basketball TID Camp',
-            description: `<strong>FORCE 1 Talent Identification (T.I.D.) Camp</strong>
+            title: 'FORCE 1 Talent Identification (T.I.D.) Camp',
+            description: `<strong>Basketball TID Camp</strong>
 
-The FORCE 1 Talent Identification (T.I.D.) Camp is a high-level basketball program designed to identify young athletes for the AfriqueU Invitational Showcase scheduled for June 2026 in Nairobi.This camp is meant for young athletes ready to take their expertise to the next level.This camp will not only create a pathway for local talent to be identified for U.S academy opportunities, but will also improve player's skills and understanding of the game on an international level.Proper evaluation will done by FORCE 1 T.I.D. to provide players with professional basketball assessment, a clear benchmark evaluation based on elite standards and structured skill development sessions.Through this, parents would be able to understand their child's current level, strength and areas for improvement.
-It is important to note that this camp serves as the official selection platform for the AfriqueU Invitational Showcase and only 100 athletes would be selected to move forward. Selection is merit-based and performance-driven hence advancement is earned.
+The FORCE 1 Talent Identification (T.I.D.) Camp is a high-level basketball program designed to identify young athletes for the AfriqueU Invitational Showcase scheduled for June 2026 in Nairobi. This camp is meant for young athletes ready to take their expertise to the next level. This camp will not only create a pathway for local talent to be identified for U.S academy opportunities, but will also improve player's skills and understanding of the game on an international level. Proper evaluation will done by FORCE 1 T.I.D. to provide players with professional basketball assessment, a clear benchmark evaluation based on elite standards and structured skill development sessions. This process is streamlined to ensure that parents are able to understand their child's current level, strength and areas for improvement.
+<strong>Note: </strong>This camp serves as the official selection platform for the AfriqueU Invitational Showcase and only 100 athletes would be selected to move forward. Selection is merit-based and performance-driven hence advancement is earned.
 
 <strong>Opportunities Beyond the Camp</strong>
 The FORCE 1 T.I.D. Camp would create exposure and long-term value by opening pathways for:
 -Elite local talent to be identified for U.S. academy opportunities
--Families who can self-fund to engage directly with U.S academy representatives
--Local partners to strengthen their talent pipeline and community impact
--AfriqueU and SEROS act as opportunity providers, connecting talent to the right environments - without shortcuts or unrealistic guarantees.
+-Parents who would like gain direct acesss to U.S academy representatives for self funding
+-Players will be able to work closely with local partners in order to strengthen their talent pipeline and community impact
+-Recognition by AfriqueU and SEROS would help talented players gain favourable opportunities via the relevant pathways provided. 
 
 <strong>Eligibility Criteria</strong>
 -Player may be male/female
@@ -61,7 +61,8 @@ The FORCE 1 T.I.D. Camp would create exposure and long-term value by opening pat
 -Player should be able to compete at a competitive or elite level
 
 <strong>Camp Details</strong>
-This camp is designed for basketball players aged 14-17 years of any gender(male/female). It will be held in Nairobi, Kenya and dates will be announced soon.Once a player is selected, a payment of Ksh 7,500 to cover the administrative and evaluation costs.N/B: Only selected players will be required to make payment.No payment should be done prior. 
+This camp is designed for basketball players aged 14-17 years of any gender(male/female). It will be held in Nairobi, Kenya and dates will be announced soon. Once a player is selected, a payment of Ksh 7,500 is required to cover the administrative and evaluation costs. 
+N/B: Only selected players will be required to make payment. No payment should be done prior.</strong> 
 
 <strong>Selection Process</strong>
 1)Athlete submits an application
@@ -78,7 +79,7 @@ If your child is ready to be evaluated at a higher level and you are seeking a c
             buttonText: 'Apply Now'
         },
         football: {
-            title: 'Football TID Camp',
+            title: 'Little Giants Football League',
             description: `Elite Football Trials
 Your pathway to professional football in Dubai
 This elite football trial is designed to identify one exceptional player aged 17-25 and provide them with a fully sponsored opportunity to train, compete, and potentially sign a professional contract with our team in Dubai.
@@ -179,6 +180,13 @@ app.get('/register', (req, res) => {
 
 app.get('/admin', (req, res) => {
 
+    res.render('admin/admin-dashboard', {
+        title: 'Admin Dashboard - Momentum Sports',
+        apiBaseUrl: API_BASE_URL
+    });
+});
+
+app.get('/admin/dashboard', (req, res) => {
     res.render('admin/admin-dashboard', {
         title: 'Admin Dashboard - Momentum Sports',
         apiBaseUrl: API_BASE_URL

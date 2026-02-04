@@ -66,27 +66,22 @@
     font-size: 16px;
     font-weight: 350;
     font-family: inherit;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, font-weight 0.3s ease;
     position: relative;
+    display: inline-block;
 }
 
 .nav-link:hover {
-    color: #d32f2f;
+    color: #ff6b35;
+    font-weight: 600;
 }
 
 .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: #ff6b35;
-    transition: width 0.3s ease;
+    display: none;
 }
 
 .nav-link:hover::after {
-    width: 100%;
+    display: none;
 }
 
 /* Active link */
@@ -95,8 +90,7 @@
 }
 
 .nav-link.active::after {
-    width: 100%;
-    background-color: #ff6b35;
+    display: none;
 }
 
 /* Mobile Toggle Button - Hidden by default */

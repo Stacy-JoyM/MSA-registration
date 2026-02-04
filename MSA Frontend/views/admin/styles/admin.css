@@ -40,6 +40,26 @@
     gap: 12px;
 }
 
+.gmail-status {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+}
+
+.gmail-status.connected {
+    background: #ecfdf3;
+    color: #166534;
+    border-color: #22c55e;
+}
+
+.gmail-status.disconnected {
+    background: #fff1f2;
+    color: #9f1239;
+    border-color: #fb7185;
+}
+
 .admin-select {
     padding: 9px 36px 9px 12px;
     border-radius: 10px;
@@ -135,7 +155,7 @@
 
 .summary-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 16px;
 }
 
@@ -221,6 +241,12 @@
     background: #e0f2fe;
     border-color: #0ea5e9;
     color: #0c4a6e;
+}
+
+.status-select[data-status="rejected"] {
+    background: #fee2e2;
+    border-color: #ef4444;
+    color: #991b1b;
 }
 
 .empty-state {

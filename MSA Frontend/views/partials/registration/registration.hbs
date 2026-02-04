@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/partials/registration/styles/registration.css">
 </head>
 <body>
-    {{> navbar}}
+    {{> navbar/navbar}}
 
     <main class="registration">
         <div class="banner">
@@ -25,17 +25,18 @@
                 <h1 class="form-title">Application Form: {{#if isFootball}}Football{{else}}Basketball{{/if}}</h1>
             </div>
 
-            <form class="form-card">
+            <form class="form-card" id="registrationForm" novalidate>
+                <input type="hidden" name="eventType" value="{{eventType}}">
                 {{#if isFootball}}
-                <h2 class="section-title">Player Information</h2>
+                <h2 class="section-title emphasis-title">Player Information</h2>
                 <div class="field-grid two-col">
                     <label class="field">
                         <span>Full Names as appears in ID</span>
-                        <input type="text" name="playerFullName" placeholder="Full Names">
+                        <input type="text" name="playerFullName" placeholder="Full Names" required>
                     </label>
                     <label class="field">
                         <span>Gender</span>
-                        <select name="playerGender">
+                        <select name="playerGender" required>
                             <option value="">Select</option>
                             <option value="female">Female</option>
                             <option value="male">Male</option>
@@ -44,31 +45,35 @@
                     </label>
                     <label class="field">
                         <span>Email</span>
-                        <input type="email" name="playerEmail" placeholder="Email">
+                        <input type="email" name="playerEmail" placeholder="Email" required>
                     </label>
                     <label class="field">
                         <span>Age</span>
-                        <input type="number" name="playerAge" placeholder="Age">
+                        <input type="number" name="playerAge" placeholder="Age" required>
                     </label>
                     <label class="field">
-                        <span>City/Area</span>
-                        <input type="text" name="playerCity" placeholder="City/Area">
+                        <span>City of residence</span>
+                        <input type="text" name="playerCity" placeholder="City of residence" required>
+                    </label>
+                    <label class="field">
+                        <span>Nationality</span>
+                        <input type="text" name="playerNationality" placeholder="Nationality" required>
                     </label>
                     <label class="field">
                         <span>Phone number</span>
-                        <input type="tel" name="playerPhone" placeholder="Phone number">
+                        <input type="tel" name="playerPhone" placeholder="Phone number" required>
                     </label>
                     <label class="field">
                         <span>Alternative phone number</span>
-                        <input type="tel" name="playerAltPhone" placeholder="Alternative phone number">
+                        <input type="tel" name="playerAltPhone" placeholder="Alternative phone number" required>
                     </label>
                 </div>
 
-                <h2 class="section-title">Player Information</h2>
+                <h2 class="section-title">Game Information</h2>
                 <div class="field-grid two-col">
                     <label class="field">
                         <span>Position in the field</span>
-                        <select name="playerPosition">
+                        <select name="playerPosition" required>
                             <option value="">Select</option>
                             <option value="goalkeeper">Goalkeeper</option>
                             <option value="defender">Defender</option>
@@ -77,7 +82,7 @@
                         </select>
                     </label>
                     <label class="field">
-                        <span>Any other playing position</span>
+                        <span class="optional">Any other playing position</span>
                         <select name="playerOtherPosition">
                             <option value="">Select</option>
                             <option value="goalkeeper">Goalkeeper</option>
@@ -88,20 +93,20 @@
                     </label>
                     <label class="field">
                         <span>Are you in a team at the moment. If so, whats the name of the team</span>
-                        <input type="text" name="playerCurrentTeam" placeholder="Team name">
+                        <input type="text" name="playerCurrentTeam" placeholder="Team name" required>
                     </label>
                     <label class="field">
                         <span>Previous team, if any</span>
-                        <input type="text" name="playerPreviousTeam" placeholder="Previous team">
+                        <input type="text" name="playerPreviousTeam" placeholder="Previous team" required>
                     </label>
                 </div>
 
-                <h2 class="section-title">Player Information</h2>
+                <h2 class="section-title emphasis-title">Player Information</h2>
                 <p class="section-note">Note: By providing us with injury history, this helps us to provide you with best possible ways to unleash your playing potential while also observing legal measures.</p>
                 <div class="field-grid two-col">
                     <label class="field">
                         <span>Have you previously been injured within the past 1 year or currently recovering.</span>
-                        <select name="playerInjury">
+                        <select name="playerInjury" required>
                             <option value="">Select</option>
                             <option value="yes">Yes</option>
                             <option value="no">No</option>
@@ -109,11 +114,11 @@
                     </label>
                     <label class="field">
                         <span>How did you hear about Momentum Sports Africa</span>
-                        <input type="text" name="playerReferral" placeholder="Referral">
+                        <input type="text" name="playerReferral" placeholder="Referral" required>
                     </label>
                     <label class="field">
                         <span>Would you like to be informed about similar events done by Momentum Sports Africa</span>
-                        <select name="playerUpdates">
+                        <select name="playerUpdates" required>
                             <option value="">Select</option>
                             <option value="yes">Yes</option>
                             <option value="no">No</option>
@@ -125,19 +130,19 @@
                 <div class="field-grid two-col">
                     <label class="field">
                         <span>First Name</span>
-                        <input type="text" name="parentFirstName" placeholder="First Name">
+                        <input type="text" name="parentFirstName" placeholder="First Name" required>
                     </label>
                     <label class="field">
                         <span>Last Name</span>
-                        <input type="text" name="parentLastName" placeholder="Last Name">
+                        <input type="text" name="parentLastName" placeholder="Last Name" required>
                     </label>
                     <label class="field">
                         <span>Email</span>
-                        <input type="email" name="parentEmail" placeholder="Email">
+                        <input type="email" name="parentEmail" placeholder="Email" required>
                     </label>
                     <label class="field">
                         <span>Relationship to the player</span>
-                        <select name="parentRelationship">
+                        <select name="parentRelationship" required>
                             <option value="">Select</option>
                             <option value="mother">Mother</option>
                             <option value="father">Father</option>
@@ -147,23 +152,23 @@
                     </label>
                     <label class="field">
                         <span>Phone Number</span>
-                        <input type="tel" name="parentPhone" placeholder="Phone Number">
+                        <input type="tel" name="parentPhone" placeholder="Phone Number" required>
                     </label>
                     <label class="field">
-                        <span>Secondary Phone Number</span>
+                        <span class="optional">Secondary Phone Number</span>
                         <input type="tel" name="parentSecondaryPhone" placeholder="Secondary Phone Number">
                     </label>
                 </div>
 
-                <h2 class="section-title">Player Information</h2>
+                <h2 class="section-title emphasis-title">Player Information</h2>
                 <div class="field-grid two-col">
                     <label class="field">
                         <span>Full Names as appears in ID</span>
-                        <input type="text" name="playerFullName" placeholder="Full Names">
+                        <input type="text" name="playerFullName" placeholder="Full Names" required>
                     </label>
                     <label class="field">
                         <span>Gender</span>
-                        <select name="playerGender">
+                        <select name="playerGender" required>
                             <option value="">Select</option>
                             <option value="female">Female</option>
                             <option value="male">Male</option>
@@ -171,52 +176,69 @@
                         </select>
                     </label>
                     <label class="field">
-                        <span>Email</span>
-                        <input type="email" name="playerEmail" placeholder="Email">
-                    </label>
-                    <label class="field">
                         <span>Age</span>
-                        <input type="number" name="playerAge" placeholder="Age">
+                        <input type="number" name="playerAge" placeholder="Age" required>
                     </label>
                     <label class="field">
-                        <span>City/Area</span>
-                        <input type="text" name="playerCity" placeholder="City/Area">
+                        <span>City of residence</span>
+                        <input type="text" name="playerCity" placeholder="City of residence" required>
                     </label>
                     <label class="field">
-                        <span>Phone Number</span>
-                        <input type="tel" name="playerPhone" placeholder="Phone Number">
+                        <span>Current school</span>
+                        <input type="text" name="playerSchool" placeholder="Current school" required>
+                    </label>
+                    <label class="field">
+                        <span class="optional">Current sport club</span>
+                        <input type="text" name="playerSportClub" placeholder="Current sport club">
                     </label>
                 </div>
 
-                <h2 class="section-title">Player Information</h2>
+                <h2 class="section-title">Game Information</h2>
                 <div class="field-grid two-col">
                     <label class="field">
                         <span>Position in the field</span>
-                        <input type="text" name="playerPosition" placeholder="Position in the field">
+                        <input type="text" name="playerPosition" placeholder="Position in the field" required>
                     </label>
                     <label class="field">
-                        <span>Any other playing position</span>
+                        <span class="optional">Any other playing position</span>
                         <input type="text" name="playerOtherPosition" placeholder="Other position">
                     </label>
                     <label class="field">
-                        <span>Current School</span>
-                        <input type="text" name="playerSchool" placeholder="Current School">
-                    </label>
-                    <label class="field">
                         <span>Are you currently playing for the school team</span>
-                        <select name="playerSchoolTeam">
+                        <select name="playerSchoolTeam" required>
                             <option value="">Select</option>
                             <option value="yes">Yes</option>
                             <option value="no">No</option>
                         </select>
                     </label>
+                    <label class="field">
+                        <span>Highest Level Played</span>
+                        <div class="consent-list highest-level">
+                            <label class="checkbox">
+                                <input type="radio" name="playerHighestLevel" value="school" required>
+                                <span>School</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="radio" name="playerHighestLevel" value="club" required>
+                                <span>Club</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="radio" name="playerHighestLevel" value="regional" required>
+                                <span>Regional</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="radio" name="playerHighestLevel" value="national" required>
+                                <span>National</span>
+                            </label>
+                        </div>
+                    </label>
                 </div>
 
-                <h2 class="section-title">Player Assessment</h2>
-                <div class="field-grid one-col">
+                <h2 class="section-title emphasis-title">Player Assessment</h2>
+                <div class="field-grid one-col player-assessment">
                     <label class="field">
                         <span>Have you previously been injured within the past 1 year or currently recovering.</span>
-                        <select name="playerInjury">
+                        <select name="playerInjury" required>
                             <option value="">Select</option>
                             <option value="yes">Yes</option>
                             <option value="no">No</option>
@@ -224,36 +246,84 @@
                     </label>
                     <label class="field">
                         <span>How did you hear about Momentum Sports Africa</span>
-                        <input type="text" name="playerReferral" placeholder="Referral">
+                        <input type="text" name="playerReferral" placeholder="Referral" required>
                     </label>
                     <label class="field">
                         <span>Would you like to be informed about similar events done by Momentum Sports Africa</span>
-                        <select name="playerUpdates">
+                        <select name="playerUpdates" required>
                             <option value="">Select</option>
                             <option value="yes">Yes</option>
                             <option value="no">No</option>
                         </select>
                     </label>
+                    <label class="field">
+                        <span>Have you previously attended elite basketball camps or showcases?</span>
+                        <div class="consent-list elite-camp">
+                            <label class="checkbox">
+                                <input type="radio" name="playerEliteCamp" value="yes" required>
+                                <span>Yes</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="radio" name="playerEliteCamp" value="no" required>
+                                <span>No</span>
+                            </label>
+                        </div>
+                        <input type="text" name="playerEliteCampDetails" placeholder="If yes, please specify">
+                    </label>
+                </div>
+                <h2 class="section-title emphasis-title">Eligibility</h2>
+                <div class="field-grid one-col eligibility">
+                    <label class="field">
+                        <span>Do you confirm that you are physically fit to participate in high-intensity basketball activities?</span>
+                        <div class="consent-list">
+                            <label class="checkbox">
+                                <input type="radio" name="eligibilityFitness" value="yes" required>
+                                <span>Yes</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="radio" name="eligibilityFitness" value="no" required>
+                                <span>No</span>
+                            </label>
+                        </div>
+                    </label>
+                    <label class="field">
+                        <span>Do you acknowledge that participation is at your own risk and that the organizers are not liable for injuries sustained during the camp?</span>
+                        <div class="consent-list">
+                            <label class="checkbox">
+                                <input type="checkbox" name="eligibilityRiskAck" value="yes" required>
+                                <span>Yes</span>
+                            </label>
+                        </div>
+                    </label>
                 </div>
                 {{/if}}
 
-                <h2 class="section-title">Player Information: Video Upload</h2>
-                <p class="section-note">Kindly upload two videos that showcase your sport skills</p>
+                <h2 class="section-title emphasis-title">Player Information: Video Upload</h2>
+                <p class="section-note">Kindly upload a video that consists of three (3) different shots/footage compiled into a single video to showcase your sport skills. The entire video should not be longer than 2 minutes.<strong>NOTE :</strong> Player must upload content showing their game expertise in  playing in offensive and defensive positions as well as other relevant tactics they are good at.</p>
                 <div class="upload-box">
-                    <input type="file" name="playerVideo" accept="video/*" multiple>
+                    <input type="file" name="playerVideo" accept="video/*" multiple required>
                     <span>Choose file or drag and drop</span>
-                    <small>.mp4 .mov up to 20mb each</small>
+                    <small>.mp4 .mov up to 20mb</small>
+                    <div class="upload-status" aria-live="polite">
+                        <span class="upload-status-title">No files selected</span>
+                        <ul class="upload-file-list"></ul>
+                    </div>
                 </div>
 
-                <div class="consent-list">
+                <div class="consent-list emphasis-text">
                     <label class="checkbox">
-                        <input type="checkbox" name="consentTerms">
-                        <span>I confirm the information provided is accurate.</span>
+                        <input type="checkbox" name="finalAcknowledgement" required>
+                        <span class="consent-paragraph">
+                            I consent to photography and videography during the event and authorize the use of my image and footage for marketing, media, sponsor and promotional purposes. I acknowledge that my athlete profile may be shared with partner academies and international opportunity providers and I understand that participation does not guarantee progression to the AfriqueU Invitational Showcase.
+                        </span>
                     </label>
                     <label class="checkbox">
-                        <input type="checkbox" name="consentMarketing">
-                        <span>I agree to receive updates about Momentum Sports Africa events.</span>
+                        <input type="checkbox" name="finalDeclaration" required>
+                        <span class="consent-paragraph">
+                            I confirm that all information provided is accurate and complete and I agree to comply with all camp rules and evaluation decisions.
+                        </span>
                     </label>
+                    
                 </div>
 
                 <div class="form-actions">
@@ -262,6 +332,12 @@
                 </div>
             </form>
         </section>
+
+        <p class="form-message page-message" aria-live="polite"></p>
     </main>
+    <script>
+        window.API_BASE_URL = "{{apiBaseUrl}}";
+    </script>
+    <script src="/partials/registration/scripts/registration.js"></script>
 </body>
 </html>

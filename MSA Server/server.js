@@ -1,7 +1,7 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 const express = require('express');
-const path = require('path');
 const cors = require('cors');
 
 const data = require('./src/data');
@@ -18,6 +18,15 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.get('/health', (req, res) => {
     res.json({ ok: true });
+});
+
+const getFrontendBaseUrl = () => {
+    return process.env.FRONTEND_BASE_URL || 'http://localhost:3000';
+};
+
+app.get('/admin/login', (req, res) => {
+    const baseUrl = getFrontendBaseUrl().replace(/\/$/, '');
+    res.redirect(`${baseUrl}/admin/login`);
 });
 
 app.use('/api/admin', adminRouter);

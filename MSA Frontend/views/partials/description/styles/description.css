@@ -63,6 +63,10 @@
     white-space: pre-wrap;
 }
 
+.event-description-text strong {
+    font-weight: 650;
+}
+
 .event-actions {
     display: flex;
     justify-content: space-between;

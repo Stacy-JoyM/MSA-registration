@@ -18,10 +18,15 @@ const updateApplicationStatus = async () => {
     throw new Error('Firestore adapter not configured yet.');
 };
 
+const updateApplicationEmailStatus = async () => {
+    throw new Error('Firestore adapter not configured yet.');
+};
+
 module.exports = {
     init,
     createApplication,
     listApplications,
     getSummary,
-    updateApplicationStatus
+    updateApplicationStatus,
+    updateApplicationEmailStatus
 };

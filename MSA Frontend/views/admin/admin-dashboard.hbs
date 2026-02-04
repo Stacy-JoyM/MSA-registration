@@ -19,6 +19,8 @@
                     <option value="basketball">Basketball</option>
                     <option value="football">Football</option>
                 </select>
+                <span id="gmailStatus" class="gmail-status hidden"></span>
+                <button id="reconnectGmailBtn" class="admin-btn ghost hidden" type="button">Reconnect Gmail</button>
                 <button id="logoutBtn" class="admin-btn ghost hidden">Log out</button>
             </div>
         </header>
@@ -35,15 +37,19 @@
         <section id="dashboard" class="admin-dashboard hidden">
             <div class="summary-grid">
                 <div class="summary-card">
-                    <p>Total applicants</p>
-                    <h3 id="summaryTotal">0</h3>
+                    <p>Applied</p>
+                    <h3 id="summaryApplied">0</h3>
                 </div>
                 <div class="summary-card">
                     <p>Shortlisted</p>
                     <h3 id="summaryShortlisted">0</h3>
                 </div>
                 <div class="summary-card">
-                    <p>Selected</p>
+                    <p>Rejected</p>
+                    <h3 id="summaryRejected">0</h3>
+                </div>
+                <div class="summary-card">
+                    <p>Accepted</p>
                     <h3 id="summarySelected">0</h3>
                 </div>
                 <div class="summary-card">
@@ -63,6 +69,7 @@
                             <th>Player Name</th>
                             <th>Age</th>
                             <th>Position</th>
+                            <th>Highest Level</th>
                             <th>Gender</th>
                             <th>Parent Name</th>
                             <th>Parent Contact</th>
@@ -70,11 +77,12 @@
                             <th>Videos</th>
                             <th>Status</th>
                             <th>Acceptance Email</th>
+                            <th>Rejection Email</th>
                         </tr>
                     </thead>
                     <tbody id="basketballApplicationsBody">
                         <tr>
-                            <td colspan="10" class="empty-state">No applications yet.</td>
+                            <td colspan="12" class="empty-state">No applications yet.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -97,11 +105,12 @@
                             <th>Video</th>
                             <th>Status</th>
                             <th>Acceptance Email</th>
+                            <th>Rejection Email</th>
                         </tr>
                     </thead>
                     <tbody id="footballApplicationsBody">
                         <tr>
-                            <td colspan="10" class="empty-state">No applications yet.</td>
+                            <td colspan="11" class="empty-state">No applications yet.</td>
                         </tr>
                     </tbody>
                 </table>

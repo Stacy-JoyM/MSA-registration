@@ -18,11 +18,23 @@
 
         <section class="admin-card login-card">
             <h2>Sign in</h2>
-            <p>Enter your admin password to continue.</p>
-            <form id="adminLoginForm" class="login-form">
-                <input type="password" id="adminLoginPassword" placeholder="Admin password" required>
-                <button type="submit" class="admin-btn">Sign in</button>
-            </form>
+
+            <div id="gmailWarningBox" style="display: none; background: #fff3cd; border: 1px solid #ffeeba; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <p style="color: #856404; font-size: 0.9rem; margin: 0 0 10px 0;">
+                    <strong>⚠️ Action Required:</strong> Your Gmail connection is missing or expired (7-day limit).
+                </p>
+                <a id="connectGmailLink" href="#" class="admin-btn" style="background-color: #4285F4; color: white; text-decoration: none; display: block; text-align: center; font-size: 0.85rem;">
+                    Link Gmail to Send Emails
+                </a>
+            </div>
+
+            <div id="loginFormContainer">
+                <p>Enter your admin password to continue.</p>
+                <form id="adminLoginForm" class="login-form">
+                    <input type="password" id="adminLoginPassword" placeholder="Admin password" required>
+                    <button type="submit" class="admin-btn">Sign in</button>
+                </form>
+            </div>
         </section>
     </main>
 
